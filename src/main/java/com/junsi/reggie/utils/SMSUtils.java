@@ -24,7 +24,7 @@ public class SMSUtils {
 	 * @param param 参数
 	 */
 	public static void sendMessage(String signName, String templateCode,String phoneNumbers,String param){
-		DefaultProfile profile = DefaultProfile.getProfile("cn-hangzhou", "LTAI5t6iJU9iXn2komGVjQx9", "5w0LeaT7qY0l0rNbKGWxprvfRLjnbl");
+		DefaultProfile profile = DefaultProfile.getProfile("cn-hangzhou", "", "");
 		IAcsClient client = new DefaultAcsClient(profile);
 
 		SendSmsRequest request = new SendSmsRequest();
@@ -41,7 +41,7 @@ public class SMSUtils {
 		}
 
 		// 新版
-//		DefaultProfile profile = DefaultProfile.getProfile("cn-beijing", "LTAI5t6iJU9iXn2komGVjQx9", "5w0LeaT7qY0l0rNbKGWxprvfRLjnbl");
+//		DefaultProfile profile = DefaultProfile.getProfile("cn-beijing", "", "");
 //		/** use STS Token
 //		 DefaultProfile profile = DefaultProfile.getProfile(
 //		 "<your-region-id>",           // The region ID
