@@ -10,6 +10,17 @@ spring:
       url: jdbc:mysql://localhost:3306/reggie?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
       username: root
       password: tsj368368.
+  redis:
+    host: 172.16.24.131
+    port: 6379
+    password: 368368
+    database: 0
+    lettuce:
+      pool:
+        max-wait: 1000ms
+        max-active: 8
+        max-idle: 8
+        min-idle: 0
 
 mybatis-plus:
   configuration:
