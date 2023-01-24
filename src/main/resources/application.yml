@@ -15,12 +15,9 @@ spring:
     port: 6379
     password: 368368
     database: 0
-    lettuce:
-      pool:
-        max-wait: 1000ms
-        max-active: 8
-        max-idle: 8
-        min-idle: 0
+  cache:
+    redis:
+      time-to-live: 1800000 # 30 min (单位是ms)
 
 mybatis-plus:
   configuration:

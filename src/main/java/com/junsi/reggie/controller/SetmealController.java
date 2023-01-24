@@ -12,6 +12,8 @@ import com.junsi.reggie.dto.SetmealDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.*;
 
@@ -42,6 +44,7 @@ public class SetmealController {
      * @return
      */
     @PostMapping
+    @CacheEvict(value = "setmealCache", allEntries = true) // 删除这个分类下所有数据
     public R<String> save(@RequestBody SetmealDto setMealDto) {
         setmealService.saveWithDish(setMealDto);
         return R.success("新增菜品成功");
@@ -97,6 +100,7 @@ public class SetmealController {
      * @return
      */
     @DeleteMapping
+    @CacheEvict(value = "setmealCache", allEntries = true) // 删除这个分类下所有数据
     public R<String> delete(@RequestParam List<Long> ids) { // 加上@RequestParam注解来说明才能接收到
         setmealService.deleteWithDish(ids);
         return R.success("删除套餐成功");
@@ -129,6 +133,7 @@ public class SetmealController {
      * @return
      */
     @GetMapping("/list")
+    @Cacheable(value = "setmealCache", key = "#setmeal.categoryId + '_' + #setmeal.status")
     public R<List<Setmeal>> list(Setmeal setmeal) {
         LambdaQueryWrapper<Setmeal> queryWrapper = new LambdaQueryWrapper<>();
         // 添加查询条件
